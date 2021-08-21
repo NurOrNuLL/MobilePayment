@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "OjRGku7fM8lP0GOCib06MaR6KqlqKISvIFMe7F2krf0UMbcBTH6ZvRzzP03lTIf484tL+9k2adQIjwJfk3Rmnw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Nursu\\Desktop\\MobilePayment\\MobilePayment.Web\\MobilePayment.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Nursu\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Nursu\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Nursu\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\Nursu\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\Nursu\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\Nursu\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePayment.Web", "MobilePayment.Web\MobilePayment.Web.csproj", "{4020A9AC-77A6-4C05-8186-F0880226A688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePayment.Domain", "MobilePayment.Domain\MobilePayment.Domain.csproj", "{A1D3A8D3-0125-4A69-B43E-FDECFEB6C581}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4020A9AC-77A6-4C05-8186-F0880226A688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4020A9AC-77A6-4C05-8186-F0880226A688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4020A9AC-77A6-4C05-8186-F0880226A688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4020A9AC-77A6-4C05-8186-F0880226A688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1D3A8D3-0125-4A69-B43E-FDECFEB6C581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1D3A8D3-0125-4A69-B43E-FDECFEB6C581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1D3A8D3-0125-4A69-B43E-FDECFEB6C581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1D3A8D3-0125-4A69-B43E-FDECFEB6C581}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
