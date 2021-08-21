@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.VisualBasic.CompilerServices;
 using MobilePayment.Domain.Entities;
 using MobilePayment.Domain.ValueObjects;
 
@@ -55,7 +54,7 @@ namespace MobilePayment.Infrastructure.Data
             builder.Property(p => p.OperatorType)
                 .HasConversion(
                     v => v.ToString(),
-                    v => (Operators)Enum.Parse(typeof(OperatorType), v))
+                    v => (OperatorType)Enum.Parse(typeof(OperatorType), v))
                 .IsRequired()
                 .HasMaxLength(50);
         }

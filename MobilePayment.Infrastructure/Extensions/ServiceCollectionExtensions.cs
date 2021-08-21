@@ -13,8 +13,14 @@ namespace MobilePayment.Infrastructure.Extensions
     {
         public static void AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)
         {
+            // sqlite in memory
+            // services.AddDbContext<PaymentContext>(builder =>
+            //     builder.UseSqlite(configuration.GetConnectionString("SqLite")));
+
+            // postgres
             services.AddDbContext<PaymentContext>(builder =>
-                builder.UseSqlite(configuration.GetConnectionString("SqLite")));
+                builder.UseNpgsql(configuration.GetConnectionString("Postgres"), 
+                    optionsBuilder => optionsBuilder.MigrationsAssembly("MobilePayment.Infrastructure")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ITransactionRepository, TransactionRepository>();

@@ -7,7 +7,7 @@ namespace MobilePayment.Infrastructure.Repository
 {
     public class MobileOperatorRepository : Repository<MobileOperator>, IMobileRepository
     {
-        protected MobileOperatorRepository(PaymentContext dbContext) : base(dbContext)
+        public MobileOperatorRepository(PaymentContext dbContext) : base(dbContext)
         {
         }
     }
