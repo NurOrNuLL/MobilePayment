@@ -3,7 +3,7 @@ using MobilePayment.Unit.Helpers;
 using MobilePayment.Web.Endpoints.Payments;
 using Xunit;
 
-namespace MobilePayment.Unit.ViewModelValidationTest
+namespace MobilePayment.Unit.ModelValidationTest
 {
     public class CreatePaymentCommandValidation
     {

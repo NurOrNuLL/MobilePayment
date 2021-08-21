@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
+using MobilePayment.Application.Dtos;
 
 namespace MobilePayment.Web.Endpoints.Payments
 {
@@ -12,7 +13,7 @@ namespace MobilePayment.Web.Endpoints.Payments
             [FromBody] CreatePaymentCommand request,
             CancellationToken cancellationToken = new())
         {
-            var result = await Task.FromResult(new CreatePaymentResult());
+            var validPayment = ValidPayment.From((request.PhoneNumber, request.Amount));
             return Ok(request);
         }
     }

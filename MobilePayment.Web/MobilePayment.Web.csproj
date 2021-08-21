@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MobilePayment.Application\MobilePayment.Application.csproj" />
       <ProjectReference Include="..\MobilePayment.Infrastructure\MobilePayment.Infrastructure.csproj" />
     </ItemGroup>
 
