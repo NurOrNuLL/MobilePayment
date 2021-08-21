@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Localization;
+using MobilePayment.Web.Dtos;
 using MobilePayment.Web.Localize;
 
 namespace MobilePayment.Web.Filters
@@ -20,13 +22,17 @@ namespace MobilePayment.Web.Filters
         {
             if (!context.ModelState.IsValid)
             {
-                var list = context.ModelState.Values.SelectMany(modelState => modelState.Errors,
+                var errors = context.ModelState.Values.SelectMany(modelState => modelState.Errors,
                     (_, error) => Regex.IsMatch(error.ErrorMessage, "JSON value", RegexOptions.IgnoreCase)
                         ? _localize.GetString("AmountNumberString").Value
                         : error.ErrorMessage).ToList();
 
-                context.Result = new BadRequestObjectResult(new
-                    { Title = _localize.GetString("ModelError").Value, Errors = list });
+                context.Result = new BadRequestObjectResult(new ErrorResponse
+                {
+                    Code = (int)HttpStatusCode.BadRequest,
+                    Title = _localize.GetString("ModelError"),
+                    Errors = errors
+                });
             }
 
             base.OnActionExecuting(context);
