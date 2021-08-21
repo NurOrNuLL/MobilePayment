@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using MobileOperator.UnitTest.Helpers;
 using MobilePayment.Infrastructure.Data;
 using MobilePayment.Infrastructure.Repository;
 using MobilePayment.Unit.Helpers;

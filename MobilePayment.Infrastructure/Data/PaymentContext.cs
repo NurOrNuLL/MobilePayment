@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MobilePayment.Domain.Entities;
-using MobilePayment.Domain.ValueObjects;
 
 namespace MobilePayment.Infrastructure.Data
 {
@@ -31,17 +30,17 @@ namespace MobilePayment.Infrastructure.Data
                 .WithMany(b => b.Transactions);
 
             builder.OwnsOne(p => p.PhoneNumber)
-                .Property(p => p.Number)
+                .Property(p => p.Value)
                 .HasColumnName("PhoneNumber")
                 .IsRequired()
                 .HasMaxLength(10);
 
             // type decimal for Sqlite
             builder.OwnsOne(a => a.Amount)
-                .Property(a => a.Money)
+                .Property(a => a.Value)
                 .HasColumnName("Amount")
                 .IsRequired()
-                .HasColumnType("DECIMAL(10,5)");
+                .HasColumnType("decimal(18,2)");
 
             builder.Property(p => p.Status)
                 .HasConversion(
@@ -58,7 +57,7 @@ namespace MobilePayment.Infrastructure.Data
             builder.HasKey(o => o.Id);
 
             builder.OwnsOne(p => p.OperatorInfo)
-                .Property(p => p.Name)
+                .Property(p => p.Value)
                 .HasColumnName("Name")
                 .IsRequired()
                 .HasMaxLength(100);

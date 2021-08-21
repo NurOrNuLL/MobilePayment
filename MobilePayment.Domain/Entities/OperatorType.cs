@@ -1,4 +1,4 @@
-﻿namespace MobilePayment.Domain.ValueObjects
+﻿namespace MobilePayment.Domain.Entities
 {
     public enum OperatorType
     {

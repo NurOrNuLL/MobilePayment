@@ -1,5 +1,5 @@
 using FluentAssertions;
-using MobileOperator.UnitTest.Helpers;
+using MobilePayment.Unit.Helpers;
 using MobilePayment.Web.Endpoints.Payments;
 using Xunit;
 

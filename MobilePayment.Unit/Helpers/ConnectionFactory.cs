@@ -3,7 +3,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using MobilePayment.Infrastructure.Data;
 
-namespace MobileOperator.UnitTest.Helpers
+namespace MobilePayment.Unit.Helpers
 {
     public class ConnectionFactory : IDisposable
     {

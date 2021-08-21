@@ -8,23 +8,17 @@ namespace MobilePayment.Unit.Helpers
     {
         public static Transaction GetTransaction(int mobileOperatorId)
         {
-            return new Transaction
-            {
-                Amount = new Amount(200),
-                PhoneNumber = new PhoneNumber("7079239374"),
-                Status = TransactionStatus.Success,
-                CreationAt = DateTime.Now,
-                MobileOperatorId = mobileOperatorId
-            };
+            return new Transaction(
+                PhoneNumber.From("7079239374"),
+                Amount.From(220.20m),
+                mobileOperatorId,
+                DateTime.Now,
+                TransactionStatus.Success);
         }
 
-        public static Domain.Entities.MobileOperator GetMobileOperator()
+        public static MobileOperator GetMobileOperator()
         {
-            return new Domain.Entities.MobileOperator
-            {
-                OperatorInfo = new OperatorInfo("test"),
-                OperatorType = OperatorType.Active
-            };
+            return new MobileOperator(OperatorInfo.From("test"), OperatorType.Active);
         }
     }
 }

@@ -1,24 +1,8 @@
-﻿using System.Collections.Generic;
-using MobilePayment.Domain.ValueObjects.Base;
+﻿using ValueOf;
 
 namespace MobilePayment.Domain.ValueObjects
 {
-    public class PhoneNumber : ValueObject
+    public class PhoneNumber : ValueOf<string, PhoneNumber>
     {
-        public PhoneNumber()
-        {
-        }
-
-        public PhoneNumber(string number)
-        {
-            Number = number;
-        }
-
-        public string Number { get; private set; }
-
-        protected override IEnumerable<object> GetEqualityComponents()
-        {
-            yield return Number;
-        }
     }
 }

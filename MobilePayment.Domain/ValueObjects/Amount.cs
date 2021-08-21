@@ -1,19 +1,8 @@
-﻿using System.Collections.Generic;
-using MobilePayment.Domain.ValueObjects.Base;
+﻿using ValueOf;
 
 namespace MobilePayment.Domain.ValueObjects
 {
-    public class Amount : ValueObject
+    public class Amount : ValueOf<decimal, Amount>
     {
-        public Amount(decimal money)
-        {
-            Money = money;
-        }
-
-        public decimal Money { get; private set; }
-        protected override IEnumerable<object> GetEqualityComponents()
-        {
-            yield return Money;
-        }
     }
 }

@@ -1,20 +1,8 @@
-﻿using System.Collections.Generic;
-using MobilePayment.Domain.ValueObjects.Base;
+﻿using ValueOf;
 
 namespace MobilePayment.Domain.ValueObjects
 {
-    public class OperatorInfo : ValueObject
+    public class OperatorInfo : ValueOf<string, OperatorInfo>
     {
-        public OperatorInfo(string name)
-        {
-            Name = name;
-        }
-
-        public string Name { get; private set; }
-
-        protected override IEnumerable<object> GetEqualityComponents()
-        {
-            yield return Name;
-        }
     }
 }

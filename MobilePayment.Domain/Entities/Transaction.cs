@@ -6,12 +6,12 @@ namespace MobilePayment.Domain.Entities
 {
     public class Transaction : Entity
     {
-        public PhoneNumber PhoneNumber { get; init; }
-        public Amount Amount { get; init; }
-        public DateTime CreationAt { get; init; }
-        public TransactionStatus Status { get; init; }
+        public PhoneNumber PhoneNumber { get; }
+        public Amount Amount { get; }
+        public DateTime CreationAt { get; }
+        public TransactionStatus Status { get; }
         public int MobileOperatorId { get; init; }
-        public MobileOperator MobileOperator { get; set; }
+        public MobileOperator MobileOperator { get; init; }
 
         public Transaction()
         {

@@ -6,6 +6,10 @@ namespace MobilePayment.Domain.Entities
 {
     public class MobileOperator : Entity
     {
+        public OperatorInfo OperatorInfo { get; }
+        public OperatorType OperatorType { get; }
+
+        public IList<Transaction> Transactions { get; init; }
         public MobileOperator()
         {
         }
@@ -17,10 +21,5 @@ namespace MobilePayment.Domain.Entities
             OperatorInfo = operatorInfo;
             OperatorType = operatorType;
         }
-
-        public OperatorInfo OperatorInfo { get; init; }
-        public OperatorType OperatorType { get; init; }
-
-        public IList<Transaction> Transactions { get; set; }
     }
 }
