@@ -20,8 +20,8 @@ namespace MobilePayment.Domain.Entities
         public Transaction(
             PhoneNumber phoneNumber,
             Amount amount,
-            DateTime creationAt,
             int mobileOperatorId,
+            DateTime creationAt,
             TransactionStatus status = TransactionStatus.None)
         {
             PhoneNumber = phoneNumber;

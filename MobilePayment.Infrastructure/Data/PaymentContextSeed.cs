@@ -60,8 +60,8 @@ namespace MobilePayment.Infrastructure.Data
             return new Transaction(
                 new PhoneNumber("7079239374"),
                 new Amount(200.25m),
-                DateTime.Now,
                 1,
+                DateTime.Now,
                 TransactionStatus.Success);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Localization;
@@ -20,7 +21,7 @@ namespace MobilePayment.Web.Filters
             if (!context.ModelState.IsValid)
             {
                 var list = context.ModelState.Values.SelectMany(modelState => modelState.Errors,
-                    (_, error) => error.ErrorMessage.Contains("Could not convert string to decimal")
+                    (_, error) => Regex.IsMatch(error.ErrorMessage, "JSON value", RegexOptions.IgnoreCase)
                         ? _localize.GetString("AmountNumberString").Value
                         : error.ErrorMessage).ToList();
 
