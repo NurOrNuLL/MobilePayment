@@ -4,11 +4,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePayment.Web", "Mobile
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePayment.Domain", "MobilePayment.Domain\MobilePayment.Domain.csproj", "{A1D3A8D3-0125-4A69-B43E-FDECFEB6C581}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{107034B7-C1DA-4F26-A721-94CA631F2B66}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Tests", "3. Tests", "{107034B7-C1DA-4F26-A721-94CA631F2B66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePayment.Integration", "MobilePayment.Integration\MobilePayment.Integration.csproj", "{C30579DC-8F4C-4913-9318-85372968A25C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePayment.Infrastructure", "MobilePayment.Infrastructure\MobilePayment.Infrastructure.csproj", "{AF8BA6C0-2118-4BFD-AAF3-D27E6590F962}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Domain", "0. Domain", "{FC6CBEB3-84C9-46A1-8717-142BDDA6C690}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Application", "1. Application", "{E96D002D-6821-4DF2-8C0A-7BCA1BB1F114}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Infrastructure", "2. Infrastructure", "{D1181E4F-CAAE-46F2-B818-0576902196B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,5 +41,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C30579DC-8F4C-4913-9318-85372968A25C} = {107034B7-C1DA-4F26-A721-94CA631F2B66}
+		{A1D3A8D3-0125-4A69-B43E-FDECFEB6C581} = {FC6CBEB3-84C9-46A1-8717-142BDDA6C690}
+		{AF8BA6C0-2118-4BFD-AAF3-D27E6590F962} = {D1181E4F-CAAE-46F2-B818-0576902196B2}
+		{4020A9AC-77A6-4C05-8186-F0880226A688} = {D1181E4F-CAAE-46F2-B818-0576902196B2}
 	EndGlobalSection
 EndGlobal

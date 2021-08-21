@@ -1,5 +1,4 @@
-﻿using System;
-using MobilePayment.Domain.Entities.Base;
+﻿using MobilePayment.Domain.Entities.Base;
 using MobilePayment.Domain.ValueObjects;
 
 namespace MobilePayment.Domain.Entities
@@ -8,6 +7,5 @@ namespace MobilePayment.Domain.Entities
     {
         public PhoneNumber PhoneNumber { get; set; }
         public Amount Amount { get; set; }
-        public DateTime CreatedAt { get; set; }
     }
 }

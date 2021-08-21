@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MobilePayment.Infrastructure.Extensions;
 using MobilePayment.Web.Extension;
 
 namespace MobilePayment.Web
@@ -21,7 +22,7 @@ namespace MobilePayment.Web
             services.AddWebControllers();
             services.AddLocalizationService();
             services.AddHealthChecks();
-            //services.AddInfrastructureLayer(Configuration);
+            services.AddInfrastructureLayer(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
