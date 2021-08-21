@@ -20,7 +20,13 @@ namespace MobilePayment.Infrastructure.Data
 
                 if (!context.Operators.Any())
                 {
-                    context.Operators.AddRange();
+                    context.Operators.AddRange(GetOperators());
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Transactions.Any())
+                {
+                    context.Transactions.Add(GetTransaction());
                     await context.SaveChangesAsync();
                 }
             }
@@ -37,10 +43,26 @@ namespace MobilePayment.Infrastructure.Data
             return new List<MobileOperator>
             {
                 new() { OperatorInfo = new OperatorInfo("АО «Кселл»"), OperatorType = OperatorType.Active },
-                new() { OperatorInfo = new OperatorInfo("ТОО «Мобайл Телеком-Сервис»"), OperatorType = OperatorType.Altel },
+                new()
+                {
+                    OperatorInfo = new OperatorInfo("ТОО «Мобайл Телеком-Сервис»"), OperatorType = OperatorType.Altel
+                },
                 new() { OperatorInfo = new OperatorInfo("ТОО «КаР-Тел»"), OperatorType = OperatorType.Beeline },
-                new() { OperatorInfo = new OperatorInfo("ТОО «Мобайл Телеком-Сервис»"), OperatorType = OperatorType.Tele2 },
+                new()
+                {
+                    OperatorInfo = new OperatorInfo("ТОО «Мобайл Телеком-Сервис»"), OperatorType = OperatorType.Tele2
+                },
             };
+        }
+
+        private static Transaction GetTransaction()
+        {
+            return new Transaction(
+                new PhoneNumber("7079239374"),
+                new Amount(200.25m),
+                DateTime.Now,
+                1,
+                TransactionStatus.Success);
         }
     }
 }

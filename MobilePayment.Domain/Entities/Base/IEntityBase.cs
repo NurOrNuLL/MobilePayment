@@ -1,6 +1,6 @@
 ﻿namespace MobilePayment.Domain.Entities.Base
 {
-    public interface IEntityBase<TId>
+    public interface IEntityBase<out TId>
     {
         TId Id { get; }
     }

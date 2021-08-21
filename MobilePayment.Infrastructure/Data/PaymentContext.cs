@@ -26,6 +26,10 @@ namespace MobilePayment.Infrastructure.Data
             builder.ToTable("Transaction");
             builder.HasKey(t => t.Id);
 
+            builder
+                .HasOne(p => p.MobileOperator)
+                .WithMany(b => b.Transactions);
+
             builder.OwnsOne(p => p.PhoneNumber)
                 .Property(p => p.Number)
                 .HasColumnName("PhoneNumber")
@@ -38,6 +42,14 @@ namespace MobilePayment.Infrastructure.Data
                 .HasColumnName("Amount")
                 .IsRequired()
                 .HasColumnType("DECIMAL(10,5)");
+
+            builder.Property(p => p.Status)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (TransactionStatus)Enum.Parse(typeof(TransactionStatus), v))
+                .HasColumnName("Status")
+                .IsRequired()
+                .HasMaxLength(50);
         }
 
         private void ConfigureMobileOperator(EntityTypeBuilder<MobileOperator> builder)
@@ -47,7 +59,7 @@ namespace MobilePayment.Infrastructure.Data
 
             builder.OwnsOne(p => p.OperatorInfo)
                 .Property(p => p.Name)
-                .HasColumnName("OperatorInfo")
+                .HasColumnName("Name")
                 .IsRequired()
                 .HasMaxLength(100);
 
