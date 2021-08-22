@@ -20,8 +20,8 @@ namespace MobilePayment.Infrastructure.Repository
         public async Task<Dictionary<string, OperatorType>> GetPrefixesAsync()
         {
             return await _context.Prefixes.Include(p => p.Operator)
-                .Select(p => new { Prefix = p.Prefix.Value, Type = p.Operator.OperatorType })
-                .ToDictionaryAsync(k => k.Prefix, v => v.Type);
+                .Select(p => new { p.Prefix.Value, p.Operator.OperatorType })
+                .ToDictionaryAsync(k => k.Value, v => v.OperatorType);
         }
     }
 }

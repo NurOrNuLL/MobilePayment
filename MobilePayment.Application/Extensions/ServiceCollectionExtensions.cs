@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MobilePayment.Application.Services.MobileOperatorService;
 using MobilePayment.Application.Services.MobileOperatorService.Interfaces;
@@ -10,7 +9,7 @@ namespace MobilePayment.Application.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddApplicationLayer(this IServiceCollection services, IConfiguration configuration)
+        public static void AddApplicationLayer(this IServiceCollection services)
         {
             services.AddTransient<IOperatorTypeDetector, OperatorTypeDetector>();
 

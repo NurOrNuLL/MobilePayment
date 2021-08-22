@@ -2,6 +2,7 @@
 {
     public class CreatePaymentResult
     {
-       
+        public string Status { get; set; }
+        public string OperatorName { get; set; }
     }
 }

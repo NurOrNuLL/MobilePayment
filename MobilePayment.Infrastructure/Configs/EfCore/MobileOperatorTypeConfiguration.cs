@@ -1,6 +1,8 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MobilePayment.Domain.Entities;
+using MobilePayment.Domain.Entities.Enums;
 
 namespace MobilePayment.Infrastructure.Configs.EfCore
 {
@@ -16,6 +18,14 @@ namespace MobilePayment.Infrastructure.Configs.EfCore
                 .HasColumnName("Name")
                 .IsRequired()
                 .HasMaxLength(100);
+
+            builder.Property(p => p.OperatorType)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (OperatorType)Enum.Parse(typeof(OperatorType), v))
+                .HasColumnName("OperatorType")
+                .IsRequired()
+                .HasMaxLength(50);
         }
     }
 }

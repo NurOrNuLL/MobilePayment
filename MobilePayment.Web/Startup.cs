@@ -24,7 +24,7 @@ namespace MobilePayment.Web
             services.AddLocalizationService();
             services.AddHealthChecks();
             services.AddInfrastructureLayer(Configuration);
-            services.AddApplicationLayer(Configuration);
+            services.AddApplicationLayer();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -21,12 +21,12 @@ namespace MobilePayment.Application.Services.MobileTypeInspectorService
             var prefixes = await _prefixRepository.GetPrefixesAsync();
             var prefix = payment.GetOperatorCode();
 
-            if (!prefixes.ContainsKey(prefix))
+            if (prefixes.ContainsKey(prefix))
             {
-                throw new OperatorTypeNotFound(prefix);
+                return prefixes[prefix];
             }
 
-            return prefixes[prefix];
+            throw new OperatorTypeNotFound(prefix);
         }
     }
 }
