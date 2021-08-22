@@ -5,13 +5,13 @@ using MobilePayment.Infrastructure.Data;
 using MobilePayment.Unit.Helpers;
 using Xunit;
 
-namespace MobilePayment.Unit.Repository
+namespace MobilePayment.Unit.DbContextTest
 {
-    public class TransactionRepositoryTest
+    public class PaymentContextTest
     {
         protected readonly PaymentContext DbContext;
 
-        public TransactionRepositoryTest()
+        public PaymentContextTest()
         {
             var factory = new ConnectionFactory();
             DbContext = factory.CreateContextForInMemory();
@@ -30,6 +30,16 @@ namespace MobilePayment.Unit.Repository
         [Fact]
         public async Task Should_Success_Add_Transaction_With_Key_MobileOperator()
         {
+            var mobileOperator = await DbContext.Operators.AddAsync(FakeEntity.GetMobileOperator());
+            var transaction = FakeEntity.GetTransaction();
+
+            transaction.AddMobileOperator(mobileOperator.Entity);
+            var addedTransaction = DbContext.Transactions.AddAsync(transaction);
+            await DbContext.SaveChangesAsync();
+
+            addedTransaction.IsCompleted.Should().BeTrue();
+            addedTransaction.Result.Entity.Id.Should().Be(1);
+            addedTransaction.Result.Entity.MobileOperator.Id.Should().Be(1);
         }
     }
 }

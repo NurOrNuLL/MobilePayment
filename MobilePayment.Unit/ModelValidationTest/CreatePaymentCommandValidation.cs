@@ -11,7 +11,7 @@ namespace MobilePayment.Unit.ModelValidationTest
         public void Should_Return_Invalid_Message_For_Phone_And_Amount_Fields()
         {
             var subject = new CreatePaymentCommand();
-            var collection = Validation.ValidateModel(subject);
+            var collection = FakeValidationResult.ValidateModel(subject);
             collection.Should().NotBeEmpty().And.HaveCount(2);
         }
 
@@ -24,7 +24,7 @@ namespace MobilePayment.Unit.ModelValidationTest
                 PhoneNumber = "7079239374"
             };
 
-            var collection = Validation.ValidateModel(subject);
+            var collection = FakeValidationResult.ValidateModel(subject);
             collection.Should().BeEmpty();
         }
 
@@ -37,7 +37,7 @@ namespace MobilePayment.Unit.ModelValidationTest
                 PhoneNumber = "sds"
             };
 
-            var collection = Validation.ValidateModel(subject);
+            var collection = FakeValidationResult.ValidateModel(subject);
             collection.Should().NotBeEmpty().And.HaveCount(1);
             collection[0].ErrorMessage.Should().Be("InvalidPhoneNumber");
         }
@@ -50,7 +50,7 @@ namespace MobilePayment.Unit.ModelValidationTest
                 Amount = 200,
             };
 
-            var collection = Validation.ValidateModel(subject);
+            var collection = FakeValidationResult.ValidateModel(subject);
             collection.Should().NotBeEmpty().And.HaveCount(1);
             collection[0].ErrorMessage.Should().Be("PhoneNumberRequired");
         }
@@ -63,7 +63,7 @@ namespace MobilePayment.Unit.ModelValidationTest
                 PhoneNumber = "7079239374"
             };
 
-            var collection = Validation.ValidateModel(subject);
+            var collection = FakeValidationResult.ValidateModel(subject);
             collection.Should().NotBeEmpty().And.HaveCount(1);
             collection[0].ErrorMessage.Should().Be("AmountNumberRequired");
         }
@@ -77,7 +77,7 @@ namespace MobilePayment.Unit.ModelValidationTest
                 Amount = decimal.MinValue
             };
 
-            var collection = Validation.ValidateModel(subject);
+            var collection = FakeValidationResult.ValidateModel(subject);
             collection.Should().NotBeEmpty().And.HaveCount(1);
             collection[0].ErrorMessage.Should().Be("AmountNumberRequired");
         }
