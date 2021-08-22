@@ -9,7 +9,8 @@ namespace MobilePayment.Domain.Entities
         public OperatorInfo OperatorInfo { get; }
         public OperatorType OperatorType { get; }
 
-        public IList<Transaction> Transactions { get; init; }
+        public IEnumerable<Transaction> Transactions { get; } = new List<Transaction>();
+
         public MobileOperator()
         {
         }

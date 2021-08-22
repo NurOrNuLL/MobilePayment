@@ -10,8 +10,10 @@ namespace MobilePayment.Domain.Entities
         public Amount Amount { get; }
         public DateTime CreationAt { get; }
         public TransactionStatus Status { get; }
-        public int MobileOperatorId { get; init; }
-        public MobileOperator MobileOperator { get; init; }
+
+
+        // f-key
+        public MobileOperator MobileOperator { get; private set; }
 
         public Transaction()
         {
@@ -20,7 +22,6 @@ namespace MobilePayment.Domain.Entities
         public Transaction(
             PhoneNumber phoneNumber,
             Amount amount,
-            int mobileOperatorId,
             DateTime creationAt,
             TransactionStatus status = TransactionStatus.None)
         {
@@ -28,7 +29,11 @@ namespace MobilePayment.Domain.Entities
             Amount = amount;
             CreationAt = creationAt;
             Status = status;
-            MobileOperatorId = mobileOperatorId;
+        }
+
+        public void AddMobileOperator(MobileOperator mobileOperator)
+        {
+            MobileOperator = mobileOperator;
         }
     }
 }

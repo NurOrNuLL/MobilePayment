@@ -26,18 +26,26 @@ namespace MobilePayment.Infrastructure.Data
 
                 if (!context.Transactions.Any())
                 {
-                    context.Transactions.Add(GetTransaction());
+                    var transaction = new Transaction(
+                        PhoneNumber.From("7079239374"),
+                        Amount.From(200.20m),
+                        DateTime.Now,
+                        TransactionStatus.Success);
+
+                    var mobileOperator = await context.Operators.FindAsync(1);
+                    transaction.AddMobileOperator(mobileOperator);
+
+                    await context.Transactions.AddAsync(transaction);
                     await context.SaveChangesAsync();
                 }
             }
             catch (Exception exception)
             {
                 var log = loggerFactory.CreateLogger<PaymentContextSeed>();
-                log.LogError(exception, "Возникла ошибка при добавлении фикстур");
+                log.LogError(exception, "Возникла ошибка при добавлении данных в БД");
                 throw;
             }
         }
-
         private static IEnumerable<MobileOperator> GetOperators()
         {
             return new List<MobileOperator>
@@ -47,16 +55,6 @@ namespace MobilePayment.Infrastructure.Data
                 new(OperatorInfo.From("ТОО «КаР-Тел»"), OperatorType.Altel),
                 new(OperatorInfo.From("ТОО «Мобайл Телеком-Сервис»"), OperatorType.Tele2)
             };
-        }
-
-        private static Transaction GetTransaction()
-        {
-            return new Transaction(
-                PhoneNumber.From("7079239374"),
-                Amount.From(200.20m),
-                1,
-                DateTime.Now,
-                TransactionStatus.Success);
         }
     }
 }

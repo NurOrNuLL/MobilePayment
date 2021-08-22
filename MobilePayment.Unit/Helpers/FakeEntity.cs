@@ -6,12 +6,11 @@ namespace MobilePayment.Unit.Helpers
 {
     public static class FakeEntity
     {
-        public static Transaction GetTransaction(int mobileOperatorId)
+        public static Transaction GetTransaction()
         {
             return new Transaction(
                 PhoneNumber.From("7079239374"),
                 Amount.From(220.20m),
-                mobileOperatorId,
                 DateTime.Now,
                 TransactionStatus.Success);
         }

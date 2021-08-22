@@ -30,17 +30,6 @@ namespace MobilePayment.Unit.Repository
         [Fact]
         public async Task Should_Success_Add_Transaction_With_Key_MobileOperator()
         {
-            // var transactionRepository = new TransactionRepository(DbContext);
-            // var mobileRepository = new MobileOperatorRepository(DbContext);
-            //
-            // var addedOperator = await mobileRepository.AddAsync(FakeEntity.GetMobileOperator());
-            // var addedTransaction = await transactionRepository.AddAsync(FakeEntity.GetTransaction(addedOperator.Id));
-            //
-            // var transaction = await transactionRepository.GetByIdAsync(addedTransaction.Id);
-            // transaction.Should().BeEquivalentTo(addedTransaction);
-            //
-            // var mobileOperator = await mobileRepository.GetByIdAsync(addedOperator.Id);
-            // mobileOperator.Should().BeEquivalentTo(addedOperator);
         }
     }
 }
