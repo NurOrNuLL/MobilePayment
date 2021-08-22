@@ -26,7 +26,7 @@ namespace MobilePayment.Application.Services.MobileTypeInspectorService
                 return prefixes[prefix];
             }
 
-            throw new OperatorTypeNotFound(prefix);
+            throw new EntityNotFound(prefix);
         }
     }
 }

@@ -11,7 +11,8 @@ namespace MobilePayment.Application.Services.MobileOperatorService.Operators
 
         public async Task<MobileOperatorResult> SendRequest(ValidPayment validPayment)
         {
-            return await Task.FromResult(MobileOperatorResult.From(OperatorType.Tele2));
+            // залогировать ошибку, вернуть статус ошибка.
+            return await Task.FromResult(MobileOperatorResult.From((OperatorType.Tele2, TransactionStatus.Success)));
         }
     }
 }

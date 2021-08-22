@@ -3,7 +3,7 @@ using MobilePayment.Domain.Entities;
 using MobilePayment.Domain.Entities.Enums;
 using MobilePayment.Domain.ValueObjects;
 
-namespace MobilePayment.Unit.Helpers
+namespace MobilePayment.Unit.Fakes
 {
     public static class FakeEntity
     {

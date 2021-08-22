@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MobilePayment.Unit.Helpers
+namespace MobilePayment.Unit.Fakes
 {
     public static class FakeValidationResult
     {

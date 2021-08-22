@@ -47,7 +47,7 @@ namespace MobilePayment.Unit.Services
 
             Func<Task> act = async () => await _typeDetector.GetMobileType(ValidPayment.From(("7077777777", 220m)));
 
-            await act.Should().ThrowAsync<OperatorTypeNotFound>().WithMessage("707");
+            await act.Should().ThrowAsync<EntityNotFound>().WithMessage("707");
         }
     }
 }

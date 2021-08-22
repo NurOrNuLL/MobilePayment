@@ -10,7 +10,7 @@ namespace MobilePayment.Domain.Entities
         public PhoneNumber PhoneNumber { get; }
         public Amount Amount { get; }
         public DateTime CreationAt { get; }
-        public TransactionStatus Status { get; }
+        public TransactionStatus Status { get; private set; }
 
 
         // f-key
@@ -35,6 +35,11 @@ namespace MobilePayment.Domain.Entities
         public void AddMobileOperator(MobileOperator mobileOperator)
         {
             MobileOperator = mobileOperator;
+        }
+
+        public void ChangeStatus(TransactionStatus status)
+        {
+            Status = status;
         }
     }
 }

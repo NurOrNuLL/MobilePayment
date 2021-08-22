@@ -3,7 +3,7 @@ using ValueOf;
 
 namespace MobilePayment.Application.Dtos
 {
-    public class MobileOperatorResult : ValueOf<OperatorType, MobileOperatorResult>
+    public class MobileOperatorResult : ValueOf<(OperatorType Type, TransactionStatus Status), MobileOperatorResult>
     {
     }
 }

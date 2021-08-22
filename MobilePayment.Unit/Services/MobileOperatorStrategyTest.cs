@@ -6,6 +6,8 @@ using MobilePayment.Application.Services.MobileOperatorService;
 using MobilePayment.Application.Services.MobileOperatorService.Interfaces;
 using MobilePayment.Application.Services.MobileOperatorService.Operators;
 using MobilePayment.Domain.Entities.Enums;
+using MobilePayment.Domain.Repositories;
+using MobilePayment.Unit.Fakes;
 using Xunit;
 
 namespace MobilePayment.Unit.Services
@@ -18,6 +20,7 @@ namespace MobilePayment.Unit.Services
         {
             var services = new ServiceCollection();
 
+            services.AddScoped<ITransactionRepository, FakeTransactionRepository>();
             services.AddScoped<IMobileOperatorStrategy, MobileOperatorStrategy>();
             services.AddScoped<IMobileOperator, Active>();
             services.AddScoped<IMobileOperator, Altel>();
@@ -35,7 +38,8 @@ namespace MobilePayment.Unit.Services
                 ValidPayment.From(("1111111111", 220m)),
                 OperatorType.Active);
 
-            res.Value.Should().Be(OperatorType.Active);
+            res.Value.Type.Should().Be(OperatorType.Active);
+            res.Value.Status.Should().Be(TransactionStatus.Success);
         }
 
         [Fact]
@@ -45,7 +49,8 @@ namespace MobilePayment.Unit.Services
                 ValidPayment.From(("1111111111", 220m)),
                 OperatorType.Altel);
 
-            res.Value.Should().Be(OperatorType.Altel);
+            res.Value.Type.Should().Be(OperatorType.Altel);
+            res.Value.Status.Should().Be(TransactionStatus.Success);
         }
 
         [Fact]
@@ -55,7 +60,8 @@ namespace MobilePayment.Unit.Services
                 ValidPayment.From(("1111111111", 220m)),
                 OperatorType.Beeline);
 
-            res.Value.Should().Be(OperatorType.Beeline);
+            res.Value.Type.Should().Be(OperatorType.Beeline);
+            res.Value.Status.Should().Be(TransactionStatus.Success);
         }
 
         [Fact]
@@ -65,7 +71,8 @@ namespace MobilePayment.Unit.Services
                 ValidPayment.From(("1111111111", 220m)),
                 OperatorType.Tele2);
 
-            res.Value.Should().Be(OperatorType.Tele2);
+            res.Value.Type.Should().Be(OperatorType.Tele2);
+            res.Value.Status.Should().Be(TransactionStatus.Success);
         }
     }
 }

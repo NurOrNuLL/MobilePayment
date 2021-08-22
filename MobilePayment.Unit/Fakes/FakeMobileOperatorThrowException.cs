@@ -1,19 +1,20 @@
 using System;
 using System.Threading.Tasks;
 using MobilePayment.Application.Dtos;
+using MobilePayment.Application.Exception;
 using MobilePayment.Application.Services.MobileOperatorService.Interfaces;
 using MobilePayment.Domain.Entities.Enums;
 
-namespace MobilePayment.Unit.Helpers
+namespace MobilePayment.Unit.Fakes
 {
-    public class FakeMobileOperatorSuccess : IMobileOperator
+    public class FakeMobileOperatorThrowException : IMobileOperator
     {
-        public OperatorType OperatorType => OperatorType.Beeline;
+        public OperatorType OperatorType => OperatorType.Active;
 
         public async Task<MobileOperatorResult> SendRequest(ValidPayment validPayment)
         {
             await Task.Delay(TimeSpan.FromSeconds(1));
-            return MobileOperatorResult.From(OperatorType.Beeline);
+            throw new MobileServerNotResponse(nameof(FakeMobileOperatorThrowException));
         }
     }
 }

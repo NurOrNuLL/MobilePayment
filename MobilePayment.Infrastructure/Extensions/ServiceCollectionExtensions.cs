@@ -11,13 +11,13 @@ namespace MobilePayment.Infrastructure.Extensions
     {
         public static void AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)
         {
-            // postgres
             services.AddDbContext<PaymentContext>(builder =>
                 builder.UseNpgsql(configuration.GetConnectionString("Postgres"),
                     optionsBuilder => optionsBuilder.MigrationsAssembly("MobilePayment.Infrastructure")));
 
 
             services.AddScoped<IOperatorPrefixRepository, OperatorPrefixRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
         }
     }
 }

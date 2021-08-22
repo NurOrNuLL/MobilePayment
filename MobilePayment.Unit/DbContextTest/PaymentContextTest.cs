@@ -3,6 +3,7 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using MobilePayment.Domain.Entities.Enums;
 using MobilePayment.Infrastructure.Data;
+using MobilePayment.Unit.Fakes;
 using MobilePayment.Unit.Helpers;
 using Xunit;
 
