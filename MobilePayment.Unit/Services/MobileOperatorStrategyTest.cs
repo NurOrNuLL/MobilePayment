@@ -35,7 +35,7 @@ namespace MobilePayment.Unit.Services
                 ValidPayment.From(("1111111111", 220m)),
                 OperatorType.Active);
 
-            res.Value.Should().Be((OperatorType.Active, TransactionStatus.Success));
+            res.Value.Should().Be(OperatorType.Active);
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace MobilePayment.Unit.Services
                 ValidPayment.From(("1111111111", 220m)),
                 OperatorType.Altel);
 
-            res.Value.Should().Be((OperatorType.Active, TransactionStatus.Success));
+            res.Value.Should().Be(OperatorType.Altel);
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace MobilePayment.Unit.Services
                 ValidPayment.From(("1111111111", 220m)),
                 OperatorType.Beeline);
 
-            res.Value.Should().Be((OperatorType.Active, TransactionStatus.Success));
+            res.Value.Should().Be(OperatorType.Beeline);
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace MobilePayment.Unit.Services
                 ValidPayment.From(("1111111111", 220m)),
                 OperatorType.Tele2);
 
-            res.Value.Should().Be((OperatorType.Active, TransactionStatus.Success));
+            res.Value.Should().Be(OperatorType.Tele2);
         }
     }
 }

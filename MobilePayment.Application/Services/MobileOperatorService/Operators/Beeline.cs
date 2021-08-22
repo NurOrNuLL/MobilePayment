@@ -11,8 +11,7 @@ namespace MobilePayment.Application.Services.MobileOperatorService.Operators
 
         public async Task<MobileOperatorResult> SendRequest(ValidPayment validPayment)
         {
-            // return Failure if has error.
-            return await Task.FromResult(MobileOperatorResult.From((OperatorType.Beeline, TransactionStatus.Success)));
+            return await Task.FromResult(MobileOperatorResult.From(OperatorType.Beeline));
         }
     }
 }

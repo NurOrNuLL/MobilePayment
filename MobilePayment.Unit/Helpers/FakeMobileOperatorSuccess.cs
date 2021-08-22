@@ -1,17 +1,19 @@
+using System;
 using System.Threading.Tasks;
 using MobilePayment.Application.Dtos;
 using MobilePayment.Application.Services.MobileOperatorService.Interfaces;
 using MobilePayment.Domain.Entities.Enums;
 
-namespace MobilePayment.Application.Services.MobileOperatorService.Operators
+namespace MobilePayment.Unit.Helpers
 {
-    public class Tele2 : IMobileOperator
+    public class FakeMobileOperatorSuccess : IMobileOperator
     {
-        public OperatorType OperatorType => OperatorType.Tele2;
+        public OperatorType OperatorType => OperatorType.Beeline;
 
         public async Task<MobileOperatorResult> SendRequest(ValidPayment validPayment)
         {
-            return await Task.FromResult(MobileOperatorResult.From(OperatorType.Tele2));
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            return MobileOperatorResult.From(OperatorType.Beeline);
         }
     }
 }
