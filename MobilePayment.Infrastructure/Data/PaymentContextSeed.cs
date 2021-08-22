@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MobilePayment.Domain.Entities;
+using MobilePayment.Domain.Entities.Enums;
 using MobilePayment.Domain.ValueObjects;
 
 namespace MobilePayment.Infrastructure.Data
@@ -38,6 +39,14 @@ namespace MobilePayment.Infrastructure.Data
                     await context.Transactions.AddAsync(transaction);
                     await context.SaveChangesAsync();
                 }
+
+                if (!context.Prefixes.Any())
+                {
+                    var beelineDictionary = await context.Operators.ToDictionaryAsync(k => k.OperatorType);
+                    var operatorPrefixes = OperatorPrefixes(beelineDictionary);
+                    await context.Prefixes.AddRangeAsync(operatorPrefixes);
+                    await context.SaveChangesAsync();
+                }
             }
             catch (Exception exception)
             {
@@ -46,6 +55,42 @@ namespace MobilePayment.Infrastructure.Data
                 throw;
             }
         }
+
+        private static IEnumerable<OperatorPrefix> OperatorPrefixes(
+            Dictionary<OperatorType, MobileOperator> beelineDictionary) 
+        {
+            var operatorPrefixes = new List<OperatorPrefix>();
+
+            var active701 = new OperatorPrefix(Prefix.From("701"));
+            active701.AddMobileOperator(beelineDictionary[OperatorType.Active]);
+            operatorPrefixes.Add(active701);
+
+            var beeline777 = new OperatorPrefix(Prefix.From("777"));
+            beeline777.AddMobileOperator(beelineDictionary[OperatorType.Beeline]);
+            operatorPrefixes.Add(beeline777);
+
+            var beeline705 = new OperatorPrefix(Prefix.From("705"));
+            beeline705.AddMobileOperator(beelineDictionary[OperatorType.Beeline]);
+            operatorPrefixes.Add(beeline705);
+
+            var tele707 = new OperatorPrefix(Prefix.From("707"));
+            tele707.AddMobileOperator(beelineDictionary[OperatorType.Tele2]);
+            operatorPrefixes.Add(tele707);
+
+            var tele747 = new OperatorPrefix(Prefix.From("747"));
+            tele747.AddMobileOperator(beelineDictionary[OperatorType.Tele2]);
+            operatorPrefixes.Add(tele747);
+
+            var altel700 = new OperatorPrefix(Prefix.From("700"));
+            altel700.AddMobileOperator(beelineDictionary[OperatorType.Altel]);
+            operatorPrefixes.Add(altel700);
+
+            var altel708 = new OperatorPrefix(Prefix.From("708"));
+            altel708.AddMobileOperator(beelineDictionary[OperatorType.Altel]);
+            operatorPrefixes.Add(altel708);
+            return operatorPrefixes;
+        }
+
         private static IEnumerable<MobileOperator> GetOperators()
         {
             return new List<MobileOperator>

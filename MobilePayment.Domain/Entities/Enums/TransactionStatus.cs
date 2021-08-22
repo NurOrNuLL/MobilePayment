@@ -1,4 +1,4 @@
-namespace MobilePayment.Domain.Entities
+namespace MobilePayment.Domain.Entities.Enums
 {
     public enum TransactionStatus
     {

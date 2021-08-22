@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MobilePayment.Domain.Entities.Base;
+using MobilePayment.Domain.Entities.Enums;
 using MobilePayment.Domain.ValueObjects;
 
 namespace MobilePayment.Domain.Entities
@@ -9,9 +10,11 @@ namespace MobilePayment.Domain.Entities
         public OperatorInfo OperatorInfo { get; }
         public OperatorType OperatorType { get; }
 
+        // f-key
+        public IEnumerable<OperatorPrefix> OperatorPrefixes { get; } = new List<OperatorPrefix>();
         public IEnumerable<Transaction> Transactions { get; } = new List<Transaction>();
 
-        public MobileOperator()
+        private MobileOperator()
         {
         }
 

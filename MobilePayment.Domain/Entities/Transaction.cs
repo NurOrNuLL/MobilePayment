@@ -1,5 +1,6 @@
 ﻿using System;
 using MobilePayment.Domain.Entities.Base;
+using MobilePayment.Domain.Entities.Enums;
 using MobilePayment.Domain.ValueObjects;
 
 namespace MobilePayment.Domain.Entities
@@ -15,7 +16,7 @@ namespace MobilePayment.Domain.Entities
         // f-key
         public MobileOperator MobileOperator { get; private set; }
 
-        public Transaction()
+        private Transaction()
         {
         }
 

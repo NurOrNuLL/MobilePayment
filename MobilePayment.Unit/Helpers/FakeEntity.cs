@@ -1,5 +1,6 @@
 using System;
 using MobilePayment.Domain.Entities;
+using MobilePayment.Domain.Entities.Enums;
 using MobilePayment.Domain.ValueObjects;
 
 namespace MobilePayment.Unit.Helpers
@@ -18,6 +19,11 @@ namespace MobilePayment.Unit.Helpers
         public static MobileOperator GetMobileOperator()
         {
             return new MobileOperator(OperatorInfo.From("test"), OperatorType.Active);
+        }
+
+        public static OperatorPrefix GetMobilePrefix()
+        {
+            return new OperatorPrefix(Prefix.From("707"));
         }
     }
 }
