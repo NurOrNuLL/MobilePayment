@@ -11,7 +11,7 @@ namespace MobilePayment.Unit.Fakes
     {
         public OperatorType OperatorType => OperatorType.Active;
 
-        public async Task<MobileOperatorResult> SendRequest(ValidPayment validPayment)
+        public async Task<MobileOperatorResult> SendRequestAsync(ValidPayment validPayment)
         {
             await Task.Delay(TimeSpan.FromSeconds(1));
             throw new MobileServerNotResponse(nameof(FakeMobileOperatorThrowException));

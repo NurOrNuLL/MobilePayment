@@ -10,7 +10,7 @@ namespace MobilePayment.Unit.Fakes
     {
         public OperatorType OperatorType => OperatorType.Beeline;
 
-        public async Task<MobileOperatorResult> SendRequest(ValidPayment validPayment)
+        public async Task<MobileOperatorResult> SendRequestAsync(ValidPayment validPayment)
         {
             await Task.Delay(TimeSpan.Zero);
             return await Task.FromResult(MobileOperatorResult.From((OperatorType.Beeline, TransactionStatus.Success)));

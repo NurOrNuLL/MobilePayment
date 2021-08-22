@@ -9,9 +9,9 @@ namespace MobilePayment.Application.Services.MobileOperatorService.Operators
     {
         public OperatorType OperatorType => OperatorType.Beeline;
 
-        public async Task<MobileOperatorResult> SendRequest(ValidPayment validPayment)
+        public async Task<MobileOperatorResult> SendRequestAsync(ValidPayment validPayment)
         {
-            // залогировать ошибку, вернуть статус ошибка.
+            // залогировать response и результат, вернуть статус ошибка.
             return await Task.FromResult(MobileOperatorResult.From((OperatorType.Beeline, TransactionStatus.Success)));        }
     }
 }

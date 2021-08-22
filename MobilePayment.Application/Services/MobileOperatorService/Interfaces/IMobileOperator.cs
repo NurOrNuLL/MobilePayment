@@ -7,6 +7,6 @@ namespace MobilePayment.Application.Services.MobileOperatorService.Interfaces
     public interface IMobileOperator
     {
         OperatorType OperatorType { get; }
-        Task<MobileOperatorResult> SendRequest(ValidPayment validPayment);
+        Task<MobileOperatorResult> SendRequestAsync(ValidPayment validPayment);
     }
 }

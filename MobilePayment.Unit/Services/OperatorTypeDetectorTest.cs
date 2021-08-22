@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using MobilePayment.Application.Dtos;
 using MobilePayment.Application.Exception;
 using MobilePayment.Application.Services.MobileTypeInspectorService;
@@ -16,10 +17,11 @@ namespace MobilePayment.Unit.Services
     {
         private readonly OperatorTypeDetector _typeDetector;
         private readonly Mock<IOperatorPrefixRepository> _repositoryMock = new();
+        private readonly Mock<ILogger<OperatorTypeDetector>> _loggerMock = new();
 
         public OperatorTypeDetectorTest()
         {
-            _typeDetector = new OperatorTypeDetector(_repositoryMock.Object);
+            _typeDetector = new OperatorTypeDetector(_repositoryMock.Object, _loggerMock.Object);
         }
 
         [Fact]
@@ -31,7 +33,7 @@ namespace MobilePayment.Unit.Services
                     { "707", OperatorType.Tele2 }
                 });
 
-            var type = await _typeDetector.GetMobileType(ValidPayment.From(("7077777777", 220m)));
+            var type = await _typeDetector.GetMobileTypeAsync(ValidPayment.From(("7077777777", 220m)));
 
             type.Should().Be(OperatorType.Tele2);
         }
@@ -45,7 +47,8 @@ namespace MobilePayment.Unit.Services
                     { "701", OperatorType.Tele2 }
                 });
 
-            Func<Task> act = async () => await _typeDetector.GetMobileType(ValidPayment.From(("7077777777", 220m)));
+            Func<Task> act = async () =>
+                await _typeDetector.GetMobileTypeAsync(ValidPayment.From(("7077777777", 220m)));
 
             await act.Should().ThrowAsync<EntityNotFound>().WithMessage("707");
         }

@@ -6,6 +6,6 @@ namespace MobilePayment.Application.Services.MobileTypeInspectorService.Interfac
 {
     public interface IOperatorTypeDetector
     {
-        public Task<OperatorType> GetMobileType(ValidPayment payment);
+        public Task<OperatorType> GetMobileTypeAsync(ValidPayment payment);
     }
 }

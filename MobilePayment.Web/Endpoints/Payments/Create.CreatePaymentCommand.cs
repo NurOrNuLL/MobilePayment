@@ -12,5 +12,11 @@ namespace MobilePayment.Web.Endpoints.Payments
 
         [Range(1, 9999999999999999.99, ErrorMessage = "AmountNumberRequired")]
         public decimal Amount { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"PhoneNumber: {PhoneNumber}, Amount: {Amount}";
+        }
     }
 }

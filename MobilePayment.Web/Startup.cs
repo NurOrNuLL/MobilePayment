@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using MobilePayment.Application.Extensions;
 using MobilePayment.Infrastructure.Extensions;
 using MobilePayment.Web.Extension;
+using Serilog;
 
 namespace MobilePayment.Web
 {
@@ -21,6 +22,7 @@ namespace MobilePayment.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddWebControllers();
+            services.AddHttpContextAccessor();
             services.AddLocalizationService();
             services.AddHealthChecks();
             services.AddInfrastructureLayer(Configuration);
@@ -34,6 +36,7 @@ namespace MobilePayment.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSerilogRequestLogging();
             app.UseLocalization();
             app.UseHttpsRedirection();
             app.UseRouting();

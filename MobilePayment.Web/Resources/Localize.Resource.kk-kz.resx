@@ -26,4 +26,19 @@
     <data name="InvalidPhoneNumber" xml:space="preserve">
         <value>Телефон нөмірі жарамсыз. Телефон форматы 7770000000 форматында жіберілуі керек.</value>
     </data>
+    <data name="InvalidField" xml:space="preserve">
+        <value>Параметр '{0}' жарамсыз.</value>
+    </data>
+    <data name="EntityNotFount" xml:space="preserve">
+        <value>Нысанды дерекқордан табу мүмкін емес.</value>
+    </data>
+    <data name="EntityNotFoundElem" xml:space="preserve">
+        <value>'{0}' табылмады</value>
+    </data>
+    <data name="InternalErrorDesc" xml:space="preserve">
+        <value>Күтпеген қате орын алды</value>
+    </data>
+    <data name="InternalError" xml:space="preserve">
+        <value>Күтпеген қате</value>
+    </data>
 </root>

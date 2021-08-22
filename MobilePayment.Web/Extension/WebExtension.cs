@@ -10,6 +10,7 @@ namespace MobilePayment.Web.Extension
         {
             services.AddControllers(options =>
                 {
+                    options.Filters.Add(typeof(ExceptionFilter));
                     options.Filters.Add(typeof(ModelValidateFilter));
                     options.Filters.Add(typeof(LocalizationHeaderFilter));
                 })
@@ -18,7 +19,8 @@ namespace MobilePayment.Web.Extension
                 {
                     options.DataAnnotationLocalizerProvider = (_, factory) => factory.Create(typeof(Resource));
                 });
-            
+
+            services.AddScoped<ExceptionFilter>();
             services.AddScoped<ModelValidateFilter>();
             services.AddScoped<LocalizationHeaderFilter>();
         }

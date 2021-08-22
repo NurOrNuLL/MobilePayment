@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using MobilePayment.Application.Dtos;
 using MobilePayment.Application.Exception;
 using MobilePayment.Application.Services.MobileOperatorService.Interfaces;
@@ -16,13 +17,16 @@ namespace MobilePayment.Application.Services.MobileOperatorService
     {
         private readonly IEnumerable<IMobileOperator> _operators;
         private readonly ITransactionRepository _transactionRepository;
+        private readonly ILogger<MobileOperatorStrategy> _logger;
 
         public MobileOperatorStrategy(
             IEnumerable<IMobileOperator> operators,
-            ITransactionRepository transactionRepository)
+            ITransactionRepository transactionRepository,
+            ILogger<MobileOperatorStrategy> logger)
         {
             _operators = operators;
             _transactionRepository = transactionRepository;
+            _logger = logger;
         }
 
         public async Task<MobileOperatorResult> SendRequestAsync(ValidPayment validPayment, OperatorType type)
@@ -31,7 +35,9 @@ namespace MobilePayment.Application.Services.MobileOperatorService
                 PhoneNumber.From(validPayment.Value.phoneNumber), Amount.From(200.20m), DateTime.Now)
             );
 
-            var result = await _operators.First(x => x.OperatorType == type).SendRequest(validPayment);
+            _logger.LogInformation("Transaction created {Date}: {@Transaction}", DateTime.Now, transaction);
+
+            var result = await _operators.First(x => x.OperatorType == type).SendRequestAsync(validPayment);
 
             if (result is null)
             {
@@ -42,11 +48,13 @@ namespace MobilePayment.Application.Services.MobileOperatorService
             {
                 transaction.ChangeStatus(TransactionStatus.Failure);
                 await _transactionRepository.UpdateAsync(transaction);
+                _logger.LogInformation("Transaction failure {Date}: {@Transaction}", DateTime.Now, transaction);
+                return result;
             }
 
             transaction.ChangeStatus(TransactionStatus.Success);
             await _transactionRepository.UpdateAsync(transaction);
-
+            _logger.LogInformation("Transaction success {Date}: {@Transaction}", DateTime.Now, transaction);
             return result;
         }
     }

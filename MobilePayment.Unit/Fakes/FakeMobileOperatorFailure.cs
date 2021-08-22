@@ -9,7 +9,7 @@ namespace MobilePayment.Unit.Fakes
     public class FakeMobileOperatorFailure : IMobileOperator
     {
         public OperatorType OperatorType => OperatorType.Altel;
-        public async Task<MobileOperatorResult> SendRequest(ValidPayment validPayment)
+        public async Task<MobileOperatorResult> SendRequestAsync(ValidPayment validPayment)
         {
             await Task.Delay(TimeSpan.Zero);
             return await Task.FromResult(MobileOperatorResult.From((OperatorType.Altel, TransactionStatus.Failure)));

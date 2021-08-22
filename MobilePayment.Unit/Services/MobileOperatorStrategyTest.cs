@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using MobilePayment.Application.Dtos;
 using MobilePayment.Application.Services.MobileOperatorService;
 using MobilePayment.Application.Services.MobileOperatorService.Interfaces;
@@ -8,6 +9,7 @@ using MobilePayment.Application.Services.MobileOperatorService.Operators;
 using MobilePayment.Domain.Entities.Enums;
 using MobilePayment.Domain.Repositories;
 using MobilePayment.Unit.Fakes;
+using Moq;
 using Xunit;
 
 namespace MobilePayment.Unit.Services
@@ -15,6 +17,7 @@ namespace MobilePayment.Unit.Services
     public class MobileOperatorStrategyTest
     {
         private readonly IMobileOperatorStrategy _operatorStrategy;
+        private readonly Mock<ILogger<MobileOperatorStrategy>> _mockLogger = new();
 
         public MobileOperatorStrategyTest()
         {
@@ -26,6 +29,7 @@ namespace MobilePayment.Unit.Services
             services.AddScoped<IMobileOperator, Altel>();
             services.AddScoped<IMobileOperator, Beeline>();
             services.AddScoped<IMobileOperator, Tele2>();
+            services.AddSingleton(_ => _mockLogger.Object);
 
             var provider = services.BuildServiceProvider();
             _operatorStrategy = (IMobileOperatorStrategy)provider.GetRequiredService(typeof(IMobileOperatorStrategy));
