@@ -56,7 +56,7 @@ namespace MobilePayment.Infrastructure.Data
             }
         }
 
-        private static IEnumerable<OperatorPrefix> OperatorPrefixes(
+        public static IEnumerable<OperatorPrefix> OperatorPrefixes(
             Dictionary<OperatorType, MobileOperator> beelineDictionary) 
         {
             var operatorPrefixes = new List<OperatorPrefix>();
@@ -91,7 +91,7 @@ namespace MobilePayment.Infrastructure.Data
             return operatorPrefixes;
         }
 
-        private static IEnumerable<MobileOperator> GetOperators()
+        public static IEnumerable<MobileOperator> GetOperators()
         {
             return new List<MobileOperator>
             {
