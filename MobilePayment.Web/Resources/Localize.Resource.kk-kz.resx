@@ -41,4 +41,10 @@
     <data name="InternalError" xml:space="preserve">
         <value>Күтпеген қате</value>
     </data>
+    <data name="MobileError" xml:space="preserve">
+        <value>Қызмет жауап бермейді</value>
+    </data>
+    <data name="MobileErrorDesc" xml:space="preserve">
+        <value>{0} қызметі сұрауларға жауа бермейді</value>
+    </data>
 </root>

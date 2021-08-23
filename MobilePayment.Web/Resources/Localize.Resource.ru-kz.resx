@@ -41,4 +41,10 @@
     <data name="InternalError" xml:space="preserve">
         <value>Непредвиденная ошибка</value>
     </data>
+    <data name="MobileError" xml:space="preserve">
+        <value>Сервис не отвечает</value>
+    </data>
+    <data name="MobileErrorDesc" xml:space="preserve">
+        <value>Сервис {0} не отвечает на запросы</value>
+    </data>
 </root>

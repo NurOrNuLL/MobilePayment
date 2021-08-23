@@ -14,12 +14,12 @@ using Xunit;
 
 namespace MobilePayment.Unit.Services
 {
-    public class MobileOperatorStrategyTest
+    public class StrategyServiceCollectionTest
     {
         private readonly IMobileOperatorStrategy _operatorStrategy;
         private readonly Mock<ILogger<MobileOperatorStrategy>> _mockLogger = new();
 
-        public MobileOperatorStrategyTest()
+        public StrategyServiceCollectionTest()
         {
             var services = new ServiceCollection();
 

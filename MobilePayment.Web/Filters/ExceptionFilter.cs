@@ -21,6 +21,8 @@ namespace MobilePayment.Web.Filters
             _localize = localize;
         }
 
+        
+        // TODO: декомпозировать метод OnException, вынести разные фильтры.
         public void OnException(ExceptionContext context)
         {
             var response = context.HttpContext.Response;
@@ -31,47 +33,68 @@ namespace MobilePayment.Web.Filters
 
             response.ContentType = "application/json";
             context.ExceptionHandled = true;
-
-            if (exception is InvalidFieldException)
+        
+            switch (exception)
             {
-                var badRequest = new ErrorResponse
+                case InvalidFieldException:
                 {
-                    Id = id,
-                    Code = (int)HttpStatusCode.BadRequest,
-                    Title = _localize.GetString("ModelError").Value,
-                    Errors = new[] { string.Format(_localize.GetString("InvalidField").Value, exception.Message) }
-                };
+                    var badRequest = new ErrorResponse
+                    {
+                        Id = id,
+                        Code = (int)HttpStatusCode.BadRequest,
+                        Title = _localize.GetString("ModelError").Value,
+                        Errors = new[] { string.Format(_localize.GetString("InvalidField").Value, exception.Message) }
+                    };
 
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Result = new ObjectResult(badRequest);
-            }
-
-
-            if (exception is EntityNotFound)
-            {
-                var notFound = new ErrorResponse
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    context.Result = new ObjectResult(badRequest);
+                    break;
+                }
+                case EntityNotFound:
                 {
-                    Id = id,
-                    Code = (int)HttpStatusCode.NotFound,
-                    Title = _localize.GetString("EntityNotFount").Value,
-                    Errors = new[] { string.Format(_localize.GetString("EntityNotFoundElem").Value, exception.Message) }
-                };
+                    var notFound = new ErrorResponse
+                    {
+                        Id = id,
+                        Code = (int)HttpStatusCode.NotFound,
+                        Title = _localize.GetString("EntityNotFount").Value,
+                        Errors = new[]
+                            { string.Format(_localize.GetString("EntityNotFoundElem").Value, exception.Message) }
+                    };
 
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                context.Result = new ObjectResult(notFound);
+                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    context.Result = new ObjectResult(notFound);
+                    break;
+                }
+                case MobileServerNotResponse:
+                {
+                    var notFound = new ErrorResponse
+                    {
+                        Id = id,
+                        Code = (int)HttpStatusCode.NotFound,
+                        Title = _localize.GetString("MobileError").Value,
+                        Errors = new[]
+                            { string.Format(_localize.GetString("MobileErrorDesc").Value, exception.Message) }
+                    };
+
+                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    context.Result = new ObjectResult(notFound);
+                    break;
+                }
+                default:
+                {
+                    var internalServerError = new ErrorResponse
+                    {
+                        Id = id,
+                        Code = (int)HttpStatusCode.InternalServerError,
+                        Title = _localize.GetString("InternalError").Value,
+                        Errors = new[] { _localize.GetString("InternalErrorDesc").Value }
+                    };
+
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    context.Result = new ObjectResult(internalServerError);
+                    break;
+                }
             }
-
-
-            var internalServerError = new ErrorResponse
-            {
-                Id = id,
-                Code = (int)HttpStatusCode.InternalServerError,
-                Title = _localize.GetString("InternalError").Value,
-                Errors = new[] { _localize.GetString("InternalErrorDesc").Value }
-            };
-
-            response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            context.Result = new ObjectResult(internalServerError);
         }
     }
 }
